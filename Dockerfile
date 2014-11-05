@@ -14,10 +14,17 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 ENV SOLR_VERSION 4.10.2
 ENV SOLR solr-$SOLR_VERSION
 
+# Download Solr.
 RUN mkdir -p /opt && \
   wget -nv --output-document=/opt/$SOLR.tgz http://www.mirrorservice.org/sites/ftp.apache.org/lucene/solr/$SOLR_VERSION/$SOLR.tgz && \
   tar -C /opt --extract --file /opt/$SOLR.tgz && \
   rm /opt/$SOLR.tgz && \
   ln -s /opt/$SOLR /opt/solr
+
+# Add Drupal schema files.
+RUN wget -nv http://ftp.drupal.org/files/projects/apachesolr-7.x-1.7.tar.gz && \
+  tar -xvzf  apachesolr-7.x-* && \
+  cp apachesolr/solr-conf/solr-4.x/* /opt/solr/example/solr/collection1/conf && \
+  rm -rf ./apachesolr-*
 
 CMD ["/bin/bash", "-c", "/opt/solr/bin/solr -f"]
