@@ -1,4 +1,4 @@
-FROM dockerfile/java:openjdk-7-jdk
+FROM java:openjdk-7-jdk
 
 MAINTAINER  Kornel Lugosi "coornail@gmail.com"
 
