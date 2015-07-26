@@ -11,7 +11,7 @@ RUN apt-get update &&\
 RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get -y install lsof curl procps
 
-ENV SOLR_VERSION 4.10.2
+ENV SOLR_VERSION 4.10.4
 ENV SOLR solr-$SOLR_VERSION
 
 # Download Solr.
